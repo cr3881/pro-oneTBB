@@ -1,3 +1,14 @@
+# oneTBB examples
+This is a forked repo. the original repo uses makefile, which is a little hard for windows developer, and intel has a better installer on windows than on linux as my experience. Therefore, I make a CMakeLists.txt to make my learning experience better. The original repo master branch is too old. oneTBB branch is up to date.
+# intel oneAPI installer
+https://registrationcenter-download.intel.com/akdlm/IRC_NAS/ae29263e-38b9-4d43-86c3-376d6e0668e7/intel-oneapi-base-toolkit-2025.0.1.47_offline.exe
+the full installation takes too much space. proTBB exaples depends on oneDPL, at least for chapter #1. And oneDPL is part of DPC++ library. Therefore, you have to install DPC++ component. I have not verify other components. 
+oneDPL is a header only library. Therefore, it might be easier to clone from https://github.com/oneapi-src/oneDPL directly. I will try it on linux.
+# intel library environment variables
+Make sure to run "C:\\Program Files (x86)\\Intel\\oneAPI\\setvars.bat" before running cmake script. it sets up env variables for the cmake scripts, otherwise, cmake does not know how to load intel library. vs2022 works fine, and you can try intel compiler too. 
+
+
+#ORIGINAL README.
 # SourceCode
 
 Source code of the examples provided in each chapter of the TBB book (2019).
