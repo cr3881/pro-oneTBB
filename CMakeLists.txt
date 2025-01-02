@@ -22,19 +22,22 @@ macro(add_fig)
     # define maco to avoid duplicate code
     # Add the executable
     add_executable(tbb_${fig_NAME} ${fig_SOURCES})
+    target_link_libraries(tbb_${fig_NAME} PRIVATE TBB::tbb)
     set_property(TARGET tbb_${fig_NAME} PROPERTY VS_DEBUGGER_ENVIRONMENT "PATH=%PATH%;$ENV{TBBROOT}/bin")
     set_property(TARGET tbb_${fig_NAME} PROPERTY FOLDER ${fig_FOLDER})
 endmacro()
 
 if (MSVC)
     message("make sure run \"C:\\Program Files (x86)\\Intel\\oneAPI\\setvars.bat\" before build")
-    message(STATUS "DPL_ROOT: $ENV{DPL_ROOT}")
-
-    find_package(TBB REQUIRED PATHS $ENV{TBBROOT}/lib/cmake/tbb)
-    find_package(oneDPL REQUIRED PATHS $ENV{DPL_ROOT}/lib/cmake/oneDPL)
-
-    # display TBB variables
-    message(STATUS "TBB_IMPORTED_TARGETS: ${TBB_IMPORTED_TARGETS}")
+else()
+    message("make sure run \"source /opt/intel/oneapi/setvars.sh\" before build")
 endif()
+message(STATUS "DPL_ROOT: $ENV{DPL_ROOT}")
+find_package(TBB REQUIRED PATHS $ENV{TBBROOT}/lib/cmake/tbb)
+find_package(oneDPL REQUIRED PATHS $ENV{DPL_ROOT}/lib/cmake/oneDPL)
+
+# display TBB variables
+message(STATUS "TBB_IMPORTED_TARGETS: ${TBB_IMPORTED_TARGETS}")
+
 add_subdirectory(ch01)
 add_subdirectory(ch02)
