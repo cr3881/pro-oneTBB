@@ -33,27 +33,24 @@ using ImagePtr = std::shared_ptr<ch01::Image>;
 void writeImage(ImagePtr image_ptr);
 
 ImagePtr applyGamma(ImagePtr image_ptr, double gamma) {
-  auto output_image_ptr = 
-    std::make_shared<ch01::Image>(image_ptr->name() + "_gamma", 
-      ch01::IMAGE_WIDTH, ch01::IMAGE_HEIGHT);
-  auto in_rows = image_ptr->rows();
-  auto out_rows = output_image_ptr->rows();
-  const int height = in_rows.size();
-  const int width = in_rows[1] - in_rows[0];
+  auto output_image_ptr =
+    std::make_shared<ch01::Image>(image_ptr->name() + "_gamma", ch01::IMAGE_WIDTH, ch01::IMAGE_HEIGHT);
+  auto      in_rows  = image_ptr->rows();
+  auto      out_rows = output_image_ptr->rows();
+  const int height   = in_rows.size();
+  const int width    = in_rows[1] - in_rows[0];
 
-  tbb::parallel_for( 0, height, 
-    [&in_rows, &out_rows, width, gamma](int i) {
-      auto in_row = in_rows[i];
-      auto out_row = out_rows[i];
-      std::transform(dpl::execution::unseq, in_row, in_row+width, 
-        out_row, [gamma](const ch01::Image::Pixel& p) {
-          double v = 0.3*p.bgra[2] + 0.59*p.bgra[1] + 0.11*p.bgra[0];
-          double res = pow(v, gamma);
-          if(res > ch01::MAX_BGR_VALUE) res = ch01::MAX_BGR_VALUE;
-          return ch01::Image::Pixel(res, res, res);
-      });
-    }
-  );
+  tbb::parallel_for(0, height, [&in_rows, &out_rows, width, gamma](int i) {
+    auto in_row  = in_rows[i];
+    auto out_row = out_rows[i];
+    std::transform(dpl::execution::unseq, in_row, in_row + width, out_row, [gamma](const ch01::Image::Pixel& p) {
+      double v   = 0.3 * p.bgra[2] + 0.59 * p.bgra[1] + 0.11 * p.bgra[0];
+      double res = pow(v, gamma);
+      if (res > ch01::MAX_BGR_VALUE)
+        res = ch01::MAX_BGR_VALUE;
+      return ch01::Image::Pixel(res, res, res);
+    });
+  });
   return output_image_ptr;
 }
 
