@@ -92,6 +92,7 @@ public:
       auto val = f(x, y);
       if(val > 255)
         val = 255;
+      //p = Image::Pixel(val, val, val); //move is a little faster. figure 1-7 is reduced from 0.179 to 0.168
       p = Image::Pixel(val, val, val);
     });
   }

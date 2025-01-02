@@ -1,0 +1,14 @@
+# Format Style Options - Created with Clang Power Tools
+---
+BasedOnStyle: Microsoft
+AlignConsecutiveAssignments: Consecutive
+AlignConsecutiveDeclarations: Consecutive
+AllowShortFunctionsOnASingleLine: All
+BraceWrapping: 
+  AfterFunction: false
+  BeforeElse: false
+BreakBeforeBraces: Attach
+ContinuationIndentWidth: 2
+DerivePointerAlignment: true
+IndentWidth: 2
+...
