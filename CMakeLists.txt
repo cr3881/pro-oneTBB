@@ -41,3 +41,5 @@ message(STATUS "TBB_IMPORTED_TARGETS: ${TBB_IMPORTED_TARGETS}")
 
 add_subdirectory(ch01)
 add_subdirectory(ch02)
+add_subdirectory(ch03)
+

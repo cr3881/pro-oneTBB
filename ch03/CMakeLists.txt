@@ -1,0 +1,7 @@
+add_fig(NAME fig_3_03 SOURCES  fig_3_03.cpp FOLDER ch03) 
+add_fig(NAME fig_3_05 SOURCES  fig_3_05.cpp FOLDER ch03)
+add_fig(NAME fig_3_06 SOURCES  fig_3_06.cpp FOLDER ch03)
+add_fig(NAME fig_3_10 SOURCES  fig_3_10.cpp FOLDER ch03)
+add_fig(NAME fig_3_12 SOURCES  fig_3_12.cpp FOLDER ch03)
+add_fig(NAME fig_3_14 SOURCES  fig_3_14.cpp FOLDER ch03)
+add_fig(NAME fig_3_16 SOURCES  fig_3_16.cpp FOLDER ch03)
